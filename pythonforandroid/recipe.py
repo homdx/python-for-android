@@ -1068,6 +1068,12 @@ class CythonRecipe(PythonRecipe):
         env['LIBLINK_PATH'] = liblink_path
         ensure_dir(liblink_path)
 
+        ndk_dir = self.ctx.ndk_dir
+        python_version = '.'.join(self.ctx.python_recipe.version.split('.')[:2])
+        ndk_path = os.path.join(
+            ndk_dir, 'sources', 'python', python_version, 'libs', arch.arch
+        )
+        env['LDFLAGS'] = ' -L {}'.format(ndk_path) + env['LDFLAGS']
         return env
 
 
