@@ -1,5 +1,4 @@
 from pythonforandroid.recipe import CythonRecipe
-import os
 
 
 class groestlcoin_hashRecipe(CythonRecipe):
