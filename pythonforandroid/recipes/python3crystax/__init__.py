@@ -73,8 +73,8 @@ class Python3CrystaXRecipe(TargetPythonRecipe):
     def download_if_necessary(self):
         if 'openssl' in self.ctx.recipe_build_order or self.version == '3.6':
             full_version = LATEST_FULL_VERSION[self.version]
-            Python3Recipe.url = 'https://www.python.org/ftp/python/{0}.{1}.{2}/Python-{0}.{1}.{2}.tgz'.format(*full_version.split('.'))
-            super(Python3Recipe, self).download_if_necessary()
+            Python3CrystaXRecipe.url = 'https://www.python.org/ftp/python/{0}.{1}.{2}/Python-{0}.{1}.{2}.tgz'.format(*full_version.split('.'))
+            super(Python3CrystaXRecipe, self).download_if_necessary()
 
     def get_dir_name(self):
         name = super(Python3CrystaXRecipe, self).get_dir_name()
@@ -159,9 +159,9 @@ class Python3CrystaXRecipe(TargetPythonRecipe):
                 return mk_path
 
     def prebuild_arch(self, arch):
-        super(Python3Recipe, self).prebuild_arch(arch)
+        super(Python3CrystaXRecipe, self).prebuild_arch(arch)
         if self.version == '3.6':
-            Python3Recipe.patches = ['patch_python3.6.patch']
+            Python3CrystaXRecipe.patches = ['patch_python3.6.patch']
             build_dir = self.get_build_dir(arch.arch)
             shprint(sh.ln, '-sf',
                            realpath(join(build_dir, 'Lib/site-packages/README.txt')),
