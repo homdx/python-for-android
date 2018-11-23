@@ -704,7 +704,8 @@ def run_pymodules_install(ctx, modules):
         # It works but should be replaced with something better
         env["PYTHONPATH"] = ctx.get_site_packages_dir()
         shprint(sh.bash, '-c', (
-            "venv/bin/pip install --target '{0}' --no-deps -r requirements.txt"
+            "source venv/bin/activate && " +
+            "pip install --target '{0}' --no-deps -r requirements.txt"
         ), _env=env)
 
 
