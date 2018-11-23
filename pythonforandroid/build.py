@@ -673,6 +673,11 @@ def run_pymodules_install(ctx, modules):
         base_env = copy.copy(os.environ)
         base_env["PYTHONPATH"] = ctx.get_site_packages_dir()
 
+        info('Upgrade pip to latest version')
+        shprint(sh.bash, '-c', (
+            "venv/bin/activate && pip install -U pip"
+        ), _env=base_env)
+
         info('Install Cython in case one of the modules needs it to build')
         shprint(sh.bash, '-c', (
             "venv/bin/pip install Cython"
