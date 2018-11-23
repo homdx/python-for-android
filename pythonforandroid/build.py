@@ -706,7 +706,7 @@ def run_pymodules_install(ctx, modules):
         shprint(sh.bash, '-c', (
             "source venv/bin/activate && " +
             "pip install --target '{0}' --no-deps -r requirements.txt"
-        ), _env=env)
+        ).format(env["PYTHONPATH"].replace("'", "'\"'\"'")), _env=env)
 
 
 def biglink(ctx, arch):
