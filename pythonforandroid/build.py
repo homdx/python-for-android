@@ -560,6 +560,8 @@ class Context(object):
         return exists(join(self.get_libs_dir(arch), lib))
 
     def has_package(self, name, arch=None):
+        if name.find("/") >= 0:
+            return False
         try:
             recipe = Recipe.get_recipe(name, self)
         except IOError:
